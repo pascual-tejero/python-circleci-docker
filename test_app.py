@@ -9,11 +9,17 @@ class TestApp(unittest.TestCase):
         return super().setUp()
     
     def test_hello_world(self):
+        """
+        Test the hello world route
+        """
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["message"], "Hello World")
     
-    def test_get_all_rates(self):
+    def test_get_all_rates(self):   
+        """
+        Test the get all rates route
+        """
         response = self.app.get('/rates')
         self.assertEqual(response.status_code, 200)
         actual = len(response.json["rates"])
@@ -21,6 +27,9 @@ class TestApp(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_get_all_currencies(self):
+        """
+        Test the get all currencies route
+        """
         response = self.app.get("/currencies")
         self.assertEqual(response.status_code, 200)
         actual = len(response.json["currencies"])
@@ -28,6 +37,9 @@ class TestApp(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_get_supported_currency(self):
+        """
+        Test the get supported currency route
+        """
         response = self.app.get("/rate/NGN")
         self.assertEqual(response.status_code, 200)
         actual = len(response.json["rates"])
@@ -35,6 +47,9 @@ class TestApp(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_get_unsupported_currency(self):
+        """
+        Test the get unsupported currency route
+        """
         response = self.app.get("/rate/CAD")
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json["error"], "Unsupported currency provided")

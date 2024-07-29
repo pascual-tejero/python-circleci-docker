@@ -3,12 +3,20 @@ import random
 supportedCurrencies = ["EUR", "GBP", "NGN", "USD", "YEN"]
 
 def getAllExchangeRates():
+	"""
+	Returns exchange rates for all supported currencies
+	"""
+
 	rates = {}
 	for rate in supportedCurrencies:
 		rates[rate] = getExchangeRatesForCurrency(rate)
 	return rates
 
 def getExchangeRatesForCurrency(currency):
+	"""
+	Returns exchange rates for a given currency
+	"""
+
 	availableCurrencies = supportedCurrencies.copy()
 	availableCurrencies.remove(currency)
 	rates = {}
@@ -17,4 +25,8 @@ def getExchangeRatesForCurrency(currency):
 	return rates
 
 def getSupportedCurrencies():
+	"""
+	Returns a list of supported currencies
+	"""
+
 	return supportedCurrencies
